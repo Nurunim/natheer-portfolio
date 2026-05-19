@@ -1,0 +1,122 @@
+{
+  "hero": {
+    "subtitle1": "CYBERSECURITY ENGINEER",
+    "subtitle2": "Baghdad · Iraq",
+    "name1": "NADHEER",
+    "name2": "WALEED JASIM",
+    "marquee": "CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 ·",
+    "role": "Cybersecurity Engineer",
+    "scroll": "Scroll"
+  },
+  "nav": {
+    "profile": "Profile",
+    "expertise": "Expertise",
+    "works": "Works",
+    "credentials": "Credentials",
+    "menu": "MENU",
+    "close": "CLOSE",
+    "lang": "AR"
+  },
+  "profile": {
+    "sectionTeko": "— 01 —",
+    "sectionBebeas": "PROFILE",
+    "desc_parts": [
+      "Nadheer Waleed Jasim",
+      "cybersecurity engineer",
+      "software developer",
+      "offensive and defensive security",
+      "vulnerability research",
+      "large-scale network defense",
+      " is a ",
+      " and ",
+      " based in Baghdad, Iraq. With deep expertise spanning ",
+      ", software engineering, and technical strategy, he has built and led complex systems from ",
+      " to ",
+      ". He brings precision, creativity, and discipline to every project — from custom tooling to cutting-edge security operations."
+    ],
+    "quote": "\"Precision. Creativity. Discipline.\"",
+    "locationLabel": "LOCATION",
+    "locationValue": "Baghdad, Iraq",
+    "roleLabel": "ROLE",
+    "roleValue": "Cybersecurity Engineer",
+    "emailLabel": "EMAIL",
+    "phoneLabel": "PHONE"
+  },
+  "expertise": {
+    "sectionTeko": "— 02 —",
+    "sectionBebeas": "EXPERTISE",
+    "offensive": "OFFENSIVE & DEFENSIVE",
+    "software": "SOFTWARE ENGINEERING",
+    "strategy": "STRATEGY",
+    "items": {
+      "Penetration Testing": "Penetration Testing",
+      "Vulnerability Research": "Vulnerability Research",
+      "Malware Analysis": "Malware Analysis",
+      "CTF Competition": "CTF Competition",
+      "Threat Mitigation": "Threat Mitigation",
+      "Network Defense": "Network Defense",
+      "Full-Stack Development": "Full-Stack Development",
+      "System Architecture": "System Architecture",
+      "API Design": "API Design",
+      "Database Engineering": "Database Engineering",
+      "Workflow Automation": "Workflow Automation",
+      "Security Assessment": "Security Assessment",
+      "Technical Leadership": "Technical Leadership",
+      "Research & Development": "Research & Development",
+      "Tool Development": "Tool Development",
+      "Process Engineering": "Process Engineering"
+    }
+  },
+  "works": {
+    "sectionTeko": "— 03 —",
+    "sectionBebeas": "WORKS",
+    "projects": {
+      "01": {
+        "name": "MIRAI",
+        "desc": "Advanced botnet reverse engineering and analysis project studying IoT exploit chains and network propagation mechanics"
+      },
+      "02": {
+        "name": "PRINT WORKFLOW MANAGER",
+        "desc": "Enterprise print management system streamlining production workflows for commercial printing operations"
+      },
+      "03": {
+        "name": "SECURITY & AUTOMATION TOOLING",
+        "desc": "Bespoke security tools and automation scripts built for real-world offensive and defensive operations"
+      },
+      "04": {
+        "name": "ECO-IRAQ",
+        "desc": "Environmental data platform for Iraq, aggregating ecological metrics and enabling data-driven environmental policy"
+      },
+      "05": {
+        "name": "ADVANCED VULNERABILITY RESEARCH",
+        "desc": "Systematic research into novel attack vectors, CVE documentation, and responsible disclosure"
+      },
+      "06": {
+        "name": "NETWORK DEFENSE SIMULATION",
+        "desc": "Large-scale network hardening and threat response frameworks deployed in production environments"
+      },
+      "07": {
+        "name": "AFDE — TRAINER & CO-FOUNDER",
+        "desc": "2025 — Present. 01: Designed and delivered digital empowerment curriculum at scale. 02: Co-founded the Digital Knowledge Club for youth tech education. 03: Regional advocacy for digital literacy and inclusion."
+      }
+    }
+  },
+  "credentials": {
+    "sectionTeko": "— 04 —",
+    "sectionBebeas": "CREDENTIALS",
+    "items": {
+      "item1": { "title": "6TH / 71 TEAMS", "sub": "CTF COMPETITION" },
+      "item2": { "title": "78TH / 1,014 TEAMS", "sub": "INTERNATIONAL CTF" },
+      "item3": { "title": "8TH PLACE — MINISTRY CTF", "sub": "MINISTRY OF INTERIOR COMPETITION" },
+      "cert1": "AWS CERTIFIED",
+      "cert2": "CISCO CERTIFIED",
+      "cert3": "CEH — ETHICAL HACKER"
+    },
+    "eventInfo": "Event",
+    "event": "HOST — AI DEVFEST 2026, AL-FARABI UNIVERSITY"
+  },
+  "footer": {
+    "name": "NADHEER WALEED JASIM",
+    "location": "BAGHDAD — 2026"
+  }
+}

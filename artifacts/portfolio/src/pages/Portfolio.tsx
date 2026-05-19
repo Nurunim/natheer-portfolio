@@ -1,13 +1,14 @@
 import React from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { Trans, useTranslation } from "react-i18next";
 import { GrainOverlay, CursorDot, StickyNav, PosterRule, ThinRule, OrnamentalDivider, Reveal } from "../components/Editorial";
-
-const nameChars = "NADHEER WALEED JASIM".split("");
 
 const Hero = () => {
   const { scrollY } = useScroll();
   const photoScale = useTransform(scrollY, [0, 800], [1, 1.12]);
   const overlayOpacity = useTransform(scrollY, [0, 400], [0.45, 0.72]);
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir() === "rtl";
 
   return (
     <section
@@ -49,18 +50,18 @@ const Hero = () => {
 
       {/* Corner labels — top */}
       <motion.div
-        className="absolute top-10 left-6 md:left-12 z-20"
+        className={`absolute top-10 ${isRtl ? 'right-6 md:right-12' : 'left-6 md:left-12'} z-20`}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 2.0, duration: 0.8 }}
       >
-        <span className="font-teko text-primary tracking-[0.35em] text-xs uppercase opacity-60">CYBERSECURITY ENGINEER</span>
+        <span className="font-teko text-primary tracking-[0.35em] text-xs uppercase opacity-60">{t('hero.subtitle1')}</span>
       </motion.div>
       <motion.div
-        className="absolute top-10 right-6 md:right-12 z-20"
+        className={`absolute top-10 ${isRtl ? 'left-6 md:left-12' : 'right-6 md:right-12'} z-20`}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 2.0, duration: 0.8 }}
       >
-        <span className="font-teko text-primary tracking-[0.35em] text-xs uppercase opacity-60">Baghdad · Iraq</span>
+        <span className="font-teko text-primary tracking-[0.35em] text-xs uppercase opacity-60">{t('hero.subtitle2')}</span>
       </motion.div>
 
       {/* NAME — over body, clear of subtitle */}
@@ -70,15 +71,15 @@ const Hero = () => {
           style={{ fontSize: "clamp(3rem, 10vw, 9rem)" }}
           aria-label="Nadheer Waleed Jasim"
         >
-          {/* NADHEER — slides in from left */}
-          <div className="overflow-hidden">
+          {/* NADHEER — slides in from left (or right for Arabic) */}
+          <div className="overflow-hidden py-4 -my-4 pb-8 -mb-8">
             <motion.div
-              initial={{ x: "-60%", opacity: 0 }}
+              initial={{ x: isRtl ? "60%" : "-60%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
               style={{ color: "#E8DFC0", willChange: "transform, opacity" }}
             >
-              NADHEER
+              {t('hero.name1')}
             </motion.div>
           </div>
 
@@ -89,32 +90,33 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.9 }}
+            dir="ltr"
           >
-            <div className="whitespace-nowrap flex animate-marquee" style={{ color: "#8B9E6B", fontFamily: "var(--font-teko), sans-serif", fontSize: "0.85rem", letterSpacing: "0.25em", textTransform: "uppercase", lineHeight: "normal" }}>
+            <div className="whitespace-nowrap flex animate-marquee" style={{ color: "#8B9E6B", fontFamily: "var(--font-teko), sans-serif", fontSize: "0.85rem", letterSpacing: "0.25em", textTransform: "uppercase", lineHeight: "normal", direction: isRtl ? "rtl" : "ltr" }}>
               <div className="flex-shrink-0 flex">
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
               </div>
               <div className="flex-shrink-0 flex">
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
-                <span className="pr-2">CYBERSECURITY ENGINEER · BAGHDAD · PENETRATION TESTING · CTF COMPETITOR · BACKEND ARCHITECT · IRAQ · 2026 · </span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
+                <span className={`px-2 ${isRtl ? 'pb-1' : ''}`}>{t('hero.marquee')}</span>
               </div>
             </div>
           </motion.div>
 
-          {/* WALEED JASIM — slides in from right */}
-          <div className="overflow-hidden">
+          {/* WALEED JASIM — slides in from right (or left for Arabic) */}
+          <div className="overflow-hidden py-4 -my-4 pb-8 -mb-8">
             <motion.div
-              initial={{ x: "60%", opacity: 0 }}
+              initial={{ x: isRtl ? "-60%" : "60%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.7, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
               style={{ color: "#C4A882", willChange: "transform, opacity" }}
             >
-              WALEED JASIM
+              {t('hero.name2')}
             </motion.div>
           </div>
         </div>
@@ -129,9 +131,9 @@ const Hero = () => {
       >
         <div>
           <div className="font-teko text-secondary tracking-[0.3em] text-sm md:text-base uppercase">
-            Cybersecurity Engineer
+            {t('hero.role')}
           </div>
-          <div className="font-cormorant italic text-foreground opacity-40 text-xs md:text-sm tracking-wide mt-0.5">
+          <div className="font-cormorant italic text-foreground opacity-40 text-xs md:text-sm tracking-wide mt-0.5" dir="ltr">
             +9647700155986 · natheerwaleed1f@gmail.com
           </div>
         </div>
@@ -141,7 +143,7 @@ const Hero = () => {
           transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
         >
           <div className="w-[1px] h-8 bg-primary opacity-40" />
-          <span className="font-teko text-[10px] tracking-[0.3em] text-primary opacity-40 uppercase">Scroll</span>
+          <span className="font-teko text-[10px] tracking-[0.3em] text-primary opacity-40 uppercase">{t('hero.scroll')}</span>
         </motion.div>
       </motion.div>
     </section>
@@ -149,6 +151,8 @@ const Hero = () => {
 };
 
 const Portfolio = () => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir() === "rtl";
   const worksRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress: worksScrollProgress } = useScroll({
     target: worksRef,
@@ -197,48 +201,50 @@ const Portfolio = () => {
 
           {/* PROFILE SECTION */}
           <section id="profile" className="bg-background pt-24 pb-32">
-            <div className="max-w-7xl mx-auto px-8 md:px-16">
+            <div className="max-w-7xl mx-auto px-8 md:px-16" dir={isRtl ? 'rtl' : 'ltr'}>
               <Reveal>
                 <PosterRule />
               </Reveal>
               <Reveal delay={0.1}>
                 <div className="text-center py-8 flex flex-col items-center gap-2">
-                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">PROFILE</h2>
-                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">— 01 —</span>
+                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">{t('profile.sectionBebeas')}</h2>
+                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">{t('profile.sectionTeko')}</span>
                 </div>
               </Reveal>
 
               <div className="flex flex-col md:flex-row mt-8 gap-0">
-                <Reveal delay={0.2} className="w-full md:w-[60%] pr-0 md:pr-16 md:border-r border-border">
+                <Reveal delay={0.2} className={`w-full md:w-[60%] ${isRtl ? 'pl-0 md:pl-16 md:border-l border-border' : 'pr-0 md:pr-16 md:border-r border-border'}`}>
                   <div className="hidden md:block">
-                    <span className="section-label-rotated float-left mr-6 mt-1 opacity-50">PROFILE</span>
+                    <span className={`section-label-rotated mt-1 opacity-50 ${isRtl ? 'float-right ml-6' : 'float-left mr-6'}`}>{t('profile.sectionBebeas')}</span>
                   </div>
                   <p className="font-cormorant text-xl md:text-2xl leading-[1.8] text-foreground mb-10">
-                    Nadheer Waleed Jasim is a <strong className="text-primary font-semibold">cybersecurity engineer</strong> and <strong className="text-primary font-semibold">software developer</strong> based in Baghdad, Iraq. With deep expertise spanning <strong className="text-primary font-semibold">offensive and defensive security</strong>, software engineering, and technical strategy, he has built and led complex systems from <strong className="text-primary font-semibold">vulnerability research</strong> to <strong className="text-primary font-semibold">large-scale network defense</strong>. He brings precision, creativity, and discipline to every project — from custom tooling to cutting-edge security operations.
+                    <Trans i18nKey="profile.desc" t={t}>
+                      {t('profile.desc_parts.0')} <strong className="text-primary font-semibold">{t('profile.desc_parts.1')}</strong> {t('profile.desc_parts.6')} <strong className="text-primary font-semibold">{t('profile.desc_parts.2')}</strong> {t('profile.desc_parts.8')} <strong className="text-primary font-semibold">{t('profile.desc_parts.3')}</strong> {t('profile.desc_parts.9')} <strong className="text-primary font-semibold">{t('profile.desc_parts.4')}</strong> {t('profile.desc_parts.10')} <strong className="text-primary font-semibold">{t('profile.desc_parts.5')}</strong> {t('profile.desc_parts.11')}
+                    </Trans>
                   </p>
                   <p className="font-fell italic text-2xl md:text-3xl text-highlight leading-relaxed">
-                    "Precision. Creativity. Discipline."
+                    {t('profile.quote')}
                   </p>
                 </Reveal>
 
-                <Reveal delay={0.35} className="w-full md:w-[40%] mt-12 md:mt-0 md:pl-16">
+                <Reveal delay={0.35} className={`w-full md:w-[40%] mt-12 md:mt-0 ${isRtl ? 'md:pr-16' : 'md:pl-16'}`}>
                   <div className="space-y-8">
                     {[
-                      { label: "LOCATION", value: "Baghdad, Iraq" },
-                      { label: "ROLE", value: "Cybersecurity Engineer" },
-                      { label: "EMAIL", value: "natheerwaleed1f@gmail.com" },
-                      { label: "PHONE", value: "+9647700155986" },
+                      { label: t('profile.locationLabel'), value: t('profile.locationValue') },
+                      { label: t('profile.roleLabel'), value: t('profile.roleValue') },
+                      { label: t('profile.emailLabel'), value: "natheerwaleed1f@gmail.com", dir: "ltr" },
+                      { label: t('profile.phoneLabel'), value: "+9647700155986", dir: "ltr" },
                     ].map((item, i) => (
                       <motion.div
                         key={item.label}
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 + i * 0.1, duration: 0.6, ease: "easeOut" }}
-                        className="pl-5 border-l-[2px] border-primary"
+                        className={`${isRtl ? 'pr-5 border-r-[2px]' : 'pl-5 border-l-[2px]'} border-primary`}
                       >
                         <div className="font-teko text-primary tracking-[0.2em] text-base mb-1 uppercase">{item.label}</div>
-                        <div className="font-cormorant text-foreground text-xl md:text-2xl">{item.value}</div>
+                        <div className="font-cormorant text-foreground text-xl md:text-2xl" dir={item.dir || (isRtl ? 'rtl' : 'ltr')}>{item.value}</div>
                       </motion.div>
                     ))}
                   </div>
@@ -249,33 +255,33 @@ const Portfolio = () => {
 
           {/* EXPERTISE SECTION */}
           <section id="expertise" className="bg-alt pt-24 pb-32">
-            <div className="max-w-7xl mx-auto px-8 md:px-16">
+            <div className="max-w-7xl mx-auto px-8 md:px-16" dir={isRtl ? 'rtl' : 'ltr'}>
               <Reveal>
                 <PosterRule />
               </Reveal>
               <Reveal delay={0.1}>
                 <div className="text-center py-8 flex flex-col items-center gap-2">
-                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">EXPERTISE</h2>
-                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">— 02 —</span>
+                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">{t('expertise.sectionBebeas')}</h2>
+                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">{t('expertise.sectionTeko')}</span>
                 </div>
               </Reveal>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 {[
                   {
-                    title: "OFFENSIVE & DEFENSIVE",
+                    title: t('expertise.offensive'),
                     id: "01",
                     items: ["Penetration Testing", "Vulnerability Research", "Malware Analysis", "CTF Competition", "Threat Mitigation", "Network Defense"],
                     delay: 0.1,
                   },
                   {
-                    title: "SOFTWARE ENGINEERING",
+                    title: t('expertise.software'),
                     id: "02",
                     items: ["Full-Stack Development", "System Architecture", "API Design", "Database Engineering", "Workflow Automation"],
                     delay: 0.25,
                   },
                   {
-                    title: "STRATEGY",
+                    title: t('expertise.strategy'),
                     id: "03",
                     items: ["Security Assessment", "Technical Leadership", "Research & Development", "Tool Development", "Process Engineering"],
                     delay: 0.4,
@@ -288,12 +294,12 @@ const Portfolio = () => {
                       className="h-full bg-[#0A0A08] border border-border p-8 md:p-10 relative overflow-hidden"
                     >
                       {/* Decorative background element */}
-                      <div className="absolute -top-10 -right-6 font-bebas text-[8rem] leading-none text-primary/5 select-none pointer-events-none group-hover:text-primary/10 transition-colors duration-500">
+                      <div className={`absolute -top-10 ${isRtl ? '-left-6' : '-right-6'} font-bebas text-[8rem] leading-none text-primary/5 select-none pointer-events-none group-hover:text-primary/10 transition-colors duration-500`}>
                         {col.id}
                       </div>
 
-                      <div className="flex items-end justify-between mb-8 pb-6 border-b border-border/50 relative z-10">
-                        <h3 className="font-bebas text-2xl md:text-3xl tracking-widest text-foreground">
+                      <div className={`flex items-end justify-between mb-8 pb-6 border-b border-border/50 relative z-10`}>
+                        <h3 className={`font-bebas text-2xl md:text-3xl tracking-widest text-foreground`}>
                           {col.title}
                         </h3>
                         <span className="font-teko text-primary tracking-widest text-lg opacity-80">{col.id}</span>
@@ -303,19 +309,19 @@ const Portfolio = () => {
                         {col.items.map((item, i) => (
                           <motion.li
                             key={item}
-                            initial={{ opacity: 0, x: -10 }}
+                            initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            whileHover={{ x: 8 }}
+                            whileHover={{ x: isRtl ? -8 : 8 }}
                             viewport={{ once: true }}
                             transition={{ delay: col.delay + 0.05 * i, duration: 0.4 }}
-                            className="font-cormorant text-xl md:text-2xl text-foreground/80 flex items-center gap-4 cursor-default group/item"
+                            className={`font-cormorant text-xl md:text-2xl text-foreground/80 flex items-center gap-4 cursor-default group/item`}
                           >
                             <motion.span 
                               className="text-primary text-sm opacity-50 group-hover/item:opacity-100 group-hover/item:rotate-90 transition-all duration-300 inline-block"
                             >
                               ✦
                             </motion.span>
-                            <span className="group-hover/item:text-highlight transition-colors duration-300">{item}</span>
+                            <span className="group-hover/item:text-highlight transition-colors duration-300">{t(`expertise.items.${item}`)}</span>
                           </motion.li>
                         ))}
                       </ul>
@@ -328,14 +334,14 @@ const Portfolio = () => {
 
           {/* WORKS SECTION */}
           <section id="works" className="bg-background pt-24 pb-32">
-            <div className="max-w-7xl mx-auto px-8 md:px-16">
+            <div className="max-w-7xl mx-auto px-8 md:px-16" dir={isRtl ? 'rtl' : 'ltr'}>
               <Reveal>
                 <PosterRule />
               </Reveal>
               <Reveal delay={0.1}>
                 <div className="text-center py-8 flex flex-col items-center gap-2">
-                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">WORKS</h2>
-                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">— 03 —</span>
+                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">{t('works.sectionBebeas')}</h2>
+                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">{t('works.sectionTeko')}</span>
                 </div>
               </Reveal>
 
@@ -347,15 +353,17 @@ const Portfolio = () => {
                 />
 
                 {[
-                  { id: "01", name: "MIRAI", desc: "Advanced botnet reverse engineering and analysis project studying IoT exploit chains and network propagation mechanics" },
-                  { id: "02", name: "PRINT WORKFLOW MANAGER", desc: "Enterprise print management system streamlining production workflows for commercial printing operations" },
-                  { id: "03", name: "SECURITY & AUTOMATION TOOLING", desc: "Bespoke security tools and automation scripts built for real-world offensive and defensive operations" },
-                  { id: "04", name: "ECO-IRAQ", desc: "Environmental data platform for Iraq, aggregating ecological metrics and enabling data-driven environmental policy" },
-                  { id: "05", name: "ADVANCED VULNERABILITY RESEARCH", desc: "Systematic research into novel attack vectors, CVE documentation, and responsible disclosure" },
-                  { id: "06", name: "NETWORK DEFENSE SIMULATION", desc: "Large-scale network hardening and threat response frameworks deployed in production environments" },
-                  { id: "07", name: "AFDE — TRAINER & CO-FOUNDER", desc: "2025 — Present. 01: Designed and delivered digital empowerment curriculum at scale. 02: Co-founded the Digital Knowledge Club for youth tech education. 03: Regional advocacy for digital literacy and inclusion." },
+                  { id: "01" },
+                  { id: "02" },
+                  { id: "03" },
+                  { id: "04" },
+                  { id: "05" },
+                  { id: "06" },
+                  { id: "07" },
                 ].map((project, idx) => {
-                  const isRight = idx % 2 !== 0;
+                  let isRight = idx % 2 !== 0;
+                  if (isRtl) isRight = !isRight;
+                  
                   return (
                     <div key={project.id} className={`flex w-full relative ${isRight ? 'justify-end' : 'justify-start'}`}>
                       {/* Timeline Node (Animated) */}
@@ -369,15 +377,15 @@ const Portfolio = () => {
                       
                       {/* Connector Line (Animated Drawing) */}
                       <motion.div 
-                        className={`hidden md:block absolute top-24 w-12 lg:w-16 h-[2px] bg-primary/60 ${isRight ? 'left-1/2' : 'right-1/2'} -translate-y-1/2 z-0`}
+                        className={`hidden md:block absolute top-24 w-12 lg:w-16 h-[2px] bg-primary/60 ${isRight ? (isRtl ? 'right-1/2' : 'left-1/2') : (isRtl ? 'left-1/2' : 'right-1/2')} -translate-y-1/2 z-0`}
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                        style={{ transformOrigin: isRight ? "left" : "right" }}
+                        style={{ transformOrigin: isRight ? (isRtl ? "right" : "left") : (isRtl ? "left" : "right") }}
                       />
 
-                      <div className={`w-full md:w-1/2 ${isRight ? 'md:pl-12 lg:pl-16' : 'md:pr-12 lg:pr-16'}`}>
+                      <div className={`w-full md:w-1/2 ${isRight ? (isRtl ? 'md:pr-12 lg:pr-16' : 'md:pl-12 lg:pl-16') : (isRtl ? 'md:pl-12 lg:pl-16' : 'md:pr-12 lg:pr-16')}`}>
                         <Reveal delay={0.1}>
                           <motion.div
                             className="relative group w-full"
@@ -386,15 +394,15 @@ const Portfolio = () => {
                           >
                             {/* Massive floating number behind the text */}
                             <motion.div 
-                              className={`absolute -top-10 md:-top-20 ${isRight ? '-left-4 md:-left-20' : '-right-4 md:-right-20'} font-bebas text-[10rem] md:text-[16rem] text-primary/5 select-none pointer-events-none z-0`}
+                              className={`absolute -top-10 md:-top-20 ${isRight ? (isRtl ? '-right-4 md:-right-20' : '-left-4 md:-left-20') : (isRtl ? '-left-4 md:-left-20' : '-right-4 md:-right-20')} font-bebas text-[10rem] md:text-[16rem] text-primary/5 select-none pointer-events-none z-0`}
                               variants={{ hover: { y: -20, color: "rgba(139, 158, 107, 0.1)" }, initial: { y: 0 } }}
                               transition={{ duration: 0.6, ease: "easeOut" }}
                             >
                               {project.id}
                             </motion.div>
 
-                            <div className={`relative z-10 p-6 md:p-10 border-primary/40 bg-gradient-to-r ${isRight ? 'border-l-[3px] from-primary/5 to-transparent' : 'border-r-[3px] from-transparent to-primary/5'} backdrop-blur-[2px]`}>
-                              <div className={`flex items-center gap-4 mb-4 ${!isRight && 'flex-row-reverse'}`}>
+                            <div className={`relative z-10 p-6 md:p-10 border-primary/40 bg-gradient-to-r ${isRight ? (isRtl ? 'border-r-[3px] from-transparent to-primary/5' : 'border-l-[3px] from-primary/5 to-transparent') : (isRtl ? 'border-l-[3px] from-primary/5 to-transparent' : 'border-r-[3px] from-transparent to-primary/5')} backdrop-blur-[2px]`}>
+                              <div className={`flex items-center gap-4 mb-4 ${!isRight && !isRtl ? 'flex-row-reverse' : ''} ${isRight && isRtl ? 'flex-row-reverse' : ''}`}>
                                 <span className="font-teko text-primary text-xl tracking-[0.3em] uppercase">
                                   {project.id}
                                 </span>
@@ -404,11 +412,11 @@ const Portfolio = () => {
                                   transition={{ duration: 0.4 }}
                                 />
                               </div>
-                              <h4 className={`font-bebas text-5xl md:text-7xl text-foreground mb-6 leading-none tracking-wide ${!isRight && 'text-right'}`}>
-                                {project.name}
+                              <h4 className={`font-bebas text-5xl md:text-7xl text-foreground mb-6 leading-none tracking-wide ${(isRight && isRtl) || (!isRight && !isRtl) ? 'text-right' : 'text-left'}`}>
+                                {t(`works.projects.${project.id}.name`)}
                               </h4>
-                              <p className={`font-cormorant text-foreground/80 text-xl md:text-3xl leading-relaxed ${!isRight && 'text-right'}`}>
-                                {project.desc}
+                              <p className={`font-cormorant text-foreground/80 text-xl md:text-3xl leading-relaxed ${(isRight && isRtl) || (!isRight && !isRtl) ? 'text-right' : 'text-left'}`}>
+                                {t(`works.projects.${project.id}.desc`)}
                               </p>
                             </div>
                           </motion.div>
@@ -423,25 +431,25 @@ const Portfolio = () => {
 
           {/* CREDENTIALS SECTION */}
           <section id="credentials" className="bg-alt pt-24 pb-32">
-            <div className="max-w-5xl mx-auto px-8 md:px-16">
+            <div className="max-w-5xl mx-auto px-8 md:px-16" dir={isRtl ? 'rtl' : 'ltr'}>
               <Reveal>
                 <PosterRule />
               </Reveal>
               <Reveal delay={0.1}>
                 <div className="text-center py-8 mb-8 flex flex-col items-center gap-2">
-                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">CREDENTIALS</h2>
-                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">— 04 —</span>
+                  <h2 className="font-bebas text-5xl md:text-6xl text-foreground tracking-widest">{t('credentials.sectionBebeas')}</h2>
+                  <span className="font-teko text-primary tracking-[0.3em] uppercase text-lg">{t('credentials.sectionTeko')}</span>
                 </div>
               </Reveal>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                 {[
-                  { title: "6TH / 71 TEAMS", sub: "CTF COMPETITION", span: 2 },
-                  { title: "78TH / 1,014 TEAMS", sub: "INTERNATIONAL CTF", span: 1 },
-                  { title: "8TH PLACE — MINISTRY CTF", sub: "MINISTRY OF INTERIOR COMPETITION", span: 1 },
+                  { title: t('credentials.items.item1.title'), sub: t('credentials.items.item1.sub'), span: 2 },
+                  { title: t('credentials.items.item2.title'), sub: t('credentials.items.item2.sub'), span: 1 },
+                  { title: t('credentials.items.item3.title'), sub: t('credentials.items.item3.sub'), span: 1 },
                 ].map((item, i) => (
                   <motion.div
-                    key={item.title}
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -457,7 +465,7 @@ const Portfolio = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
-                {["AWS CERTIFIED", "CISCO CERTIFIED", "CEH — ETHICAL HACKER"].map((cert, i) => (
+                {[t('credentials.items.cert1'), t('credentials.items.cert2'), t('credentials.items.cert3')].map((cert, i) => (
                   <motion.div
                     key={cert}
                     initial={{ opacity: 0, y: 20 }}
@@ -473,9 +481,9 @@ const Portfolio = () => {
 
               <Reveal delay={0.6}>
                 <div className="border-[3px] border-primary bg-[#12120C] p-7 text-center">
-                  <div className="font-teko text-primary text-base tracking-[0.3em] mb-2 uppercase">Event</div>
+                  <div className="font-teko text-primary text-base tracking-[0.3em] mb-2 uppercase">{t('credentials.eventInfo')}</div>
                   <h4 className="font-bebas text-3xl md:text-4xl text-foreground tracking-wide">
-                    HOST — AI DEVFEST 2026, AL-FARABI UNIVERSITY
+                    {t('credentials.event')}
                   </h4>
                 </div>
               </Reveal>
@@ -487,12 +495,12 @@ const Portfolio = () => {
           <div className="max-w-7xl mx-auto px-8 text-center flex flex-col items-center gap-5">
             <OrnamentalDivider />
             <div className="font-bebas text-2xl tracking-[0.3em] text-foreground mt-2">
-              NADHEER WALEED JASIM
+              {t('footer.name')}
             </div>
             <div className="font-teko uppercase tracking-[0.3em] text-primary text-sm">
-              BAGHDAD — 2026
+              {t('footer.location')}
             </div>
-            <div className="font-teko tracking-[0.15em] text-foreground opacity-40 text-sm">
+            <div className="font-teko tracking-[0.15em] text-foreground opacity-40 text-sm" dir="ltr">
               natheerwaleed1f@gmail.com | +9647700155986
             </div>
           </div>

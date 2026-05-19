@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export const GrainOverlay = () => (
   <div className="grain-overlay">
@@ -40,29 +41,58 @@ export const CursorDot = () => {
 
 export const StickyNav = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const navLinks = ['Profile', 'Expertise', 'Works', 'Credentials'];
+  const { t, i18n } = useTranslation();
+  
+  const navLinks = [
+    { key: 'profile', href: '#profile' },
+    { key: 'expertise', href: '#expertise' },
+    { key: 'works', href: '#works' },
+    { key: 'credentials', href: '#credentials' },
+  ];
+
+  const toggleLang = () => {
+    i18n.changeLanguage(i18n.language.startsWith('ar') ? 'en' : 'ar');
+  };
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="flex justify-center items-center px-6 py-4 max-w-7xl mx-auto">
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border" dir={i18n.dir()}>
+      <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+        {/* Placeholder for left flex alignment */}
+        <div className="hidden md:block w-10"></div>
         {/* Desktop links */}
         <div className="hidden md:flex gap-12 font-teko uppercase tracking-[0.2em] text-primary">
           {navLinks.map(link => (
-            <a key={link} href={`#${link.toLowerCase()}`} className="relative group hover:text-foreground transition-colors duration-300">
-              {link}
+            <a key={link.key} href={link.href} className="relative group hover:text-foreground transition-colors duration-300">
+              {t(`nav.${link.key}`)}
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
 
-        {/* Mobile toggle */}
+        {/* Desktop Lang Toggle */}
         <button
-          className="md:hidden font-teko uppercase tracking-[0.2em] text-primary w-full text-center cursor-pointer"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          onClick={toggleLang}
+          className="hidden md:block font-teko uppercase tracking-[0.2em] text-primary hover:text-foreground transition-colors duration-300 w-10"
         >
-          {mobileOpen ? 'CLOSE' : 'MENU'}
+          {t('nav.lang')}
         </button>
+
+        {/* Mobile toggle */}
+        <div className="md:hidden flex justify-between w-full">
+          <button
+            className="font-teko uppercase tracking-[0.2em] text-primary cursor-pointer"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            >
+            {mobileOpen ? t('nav.close') : t('nav.menu')}
+          </button>
+          <button
+            onClick={toggleLang}
+            className="font-teko uppercase tracking-[0.2em] text-primary cursor-pointer"
+            >
+            {t('nav.lang')}
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
@@ -78,12 +108,12 @@ export const StickyNav = () => {
             <div className="flex flex-col items-center gap-6 py-8 font-teko uppercase tracking-[0.2em] text-primary text-xl">
               {navLinks.map(link => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.key}
+                  href={link.href}
                   className="hover:text-foreground transition-colors duration-300"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link}
+                  {t(`nav.${link.key}`)}
                 </a>
               ))}
             </div>
