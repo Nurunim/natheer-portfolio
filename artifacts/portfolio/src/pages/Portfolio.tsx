@@ -1,255 +1,271 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cursor, Nav, SectionHeader, Reveal } from "../components/Editorial";
+import { GrainOverlay, CursorDot, StickyNav, PosterRule, ThinRule, OrnamentalDivider, Reveal } from "../components/Editorial";
 
 const Portfolio = () => {
   return (
-    <div className="min-h-screen relative overflow-x-hidden selection:bg-secondary selection:text-white">
-      <div className="paper-grain" />
-      <Cursor />
-      <Nav />
+    <AnimatePresence>
+      <div className="min-h-screen relative overflow-x-hidden selection:bg-secondary selection:text-background text-foreground">
+        <GrainOverlay />
+        <CursorDot />
+        <StickyNav />
 
-      <main className="max-w-6xl mx-auto px-6 pt-32 pb-24">
-        {/* HERO SECTION */}
-        <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
-          <div className="editorial-rule mb-12" />
-          
-          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
-            <div className="flex-1 text-center lg:text-left z-10">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.06 } }
-                }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary tracking-widest leading-[1.1] mb-6 flex flex-wrap justify-center lg:justify-start"
+        <main className="mx-auto w-full">
+          {/* HERO SECTION */}
+          <section id="hero" className="min-h-[100vh] bg-background relative flex flex-col items-center justify-center p-6 pb-20">
+            <motion.div 
+              initial={{ x: -100 }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="absolute left-6 top-1/2 -translate-y-1/2 hidden md:block"
+            >
+              <span className="section-label-rotated">PORTFOLIO — 2026</span>
+            </motion.div>
+            
+            <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:block">
+              <span className="section-label-rotated">BAGHDAD · IRAQ</span>
+            </div>
+            
+            {/* Geometric bracket decoration */}
+            <div className="absolute top-6 left-6 w-16 h-16 border-t-[3px] border-l-[3px] border-primary" />
+            
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.8, delay: 0 }}
+              className="relative w-[70vw] md:w-[320px] aspect-[320/420] border-[4px] border-primary mb-6"
+            >
+              <img 
+                src="/nadheer-photo.png" 
+                alt="Nadheer Waleed Jasim"
+                className="w-full h-full object-cover filter sepia-[0.2] contrast-[1.1] grayscale-[0.15]"
+              />
+            </motion.div>
+            
+            <div className="w-[70vw] md:w-[320px] h-[1px] bg-secondary mb-12" />
+            
+            <motion.div
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
+              className="text-center"
+            >
+              <h1 className="font-bebas text-[12vw] md:text-[9vw] leading-[0.85] tracking-[0.3em] text-foreground mb-6">
+                NADHEER<br/>WALEED JASIM
+              </h1>
+            </motion.div>
+            
+            <div className="w-full max-w-4xl mx-auto mb-8">
+              <PosterRule />
+            </div>
+            
+            <div className="text-center space-y-4">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
+                className="font-teko text-xl md:text-2xl tracking-[0.3em] text-secondary"
               >
-                {"NADHEER WALEED JASIM".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0 }
-                    }}
-                    className={char === " " ? "w-4 lg:w-6" : ""}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.div>
+                CYBERSECURITY ENGINEER <span className="mx-2">✦</span> BAGHDAD, IRAQ
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 1, ease: "easeOut" }}
+                className="font-cormorant italic text-sm md:text-base text-foreground"
+              >
+                +9647700155986 | natheerwaleed1f@gmail.com
+              </motion.p>
+            </div>
+          </section>
+
+          {/* PROFILE SECTION */}
+          <section id="profile" className="bg-background pt-20 pb-32">
+            <div className="max-w-7xl mx-auto px-6">
+              <PosterRule />
+              <div className="text-center py-6">
+                <span className="font-bebas text-4xl text-secondary">— 01 —</span>
+              </div>
               
-              <Reveal delay={1}>
-                <p className="font-subheading text-2xl md:text-3xl italic text-foreground/80 mb-8">
-                  Cybersecurity Engineer <span className="text-secondary mx-2">✦</span> Baghdad, Iraq
-                </p>
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 font-body text-sm tracking-wider uppercase text-foreground/70">
-                  <span>+964 770 015 5986</span>
-                  <span className="hidden lg:inline">—</span>
-                  <span>natheerwaleed1f@gmail.com</span>
+              <div className="flex flex-col md:flex-row mt-12">
+                <div className="w-full md:w-[60%] flex gap-6 md:gap-12 relative">
+                  <div className="hidden md:block">
+                    <span className="section-label-rotated absolute top-0 -left-6">PROFILE</span>
+                  </div>
+                  <Reveal className="flex-1 pr-0 md:pr-12 border-r-0 md:border-r-[1px] border-primary">
+                    <p className="font-cormorant text-lg md:text-[1.1rem] leading-[1.8] text-foreground mb-8">
+                      Nadheer Waleed Jasim is a cybersecurity engineer and software developer based in Baghdad, Iraq. With deep expertise spanning offensive and defensive security, software engineering, and technical strategy, he has built and led complex systems from vulnerability research to large-scale network defense. He brings precision, creativity, and discipline to every project — from custom tooling to cutting-edge security operations.
+                    </p>
+                    <p className="font-fell italic text-2xl md:text-3xl text-highlight">
+                      "Precision. Creativity. Discipline."
+                    </p>
+                  </Reveal>
                 </div>
-              </Reveal>
-            </div>
-            
-            <Reveal delay={0.5}>
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] shrink-0">
-                <div className="absolute inset-0 rounded-full border-[1px] border-foreground/30 scale-[1.05]" />
-                <div className="absolute inset-0 rounded-full border-[1px] border-foreground/30 scale-[1.1]" />
-                <div className="absolute inset-0 rounded-full border-[4px] border-double border-secondary z-20 pointer-events-none" />
-                <img 
-                  src="/nadheer-photo.png" 
-                  alt="Nadheer Waleed Jasim"
-                  className="w-full h-full object-cover rounded-full filter sepia-[0.2] contrast-125"
-                />
-              </div>
-            </Reveal>
-          </div>
-          
-          <div className="editorial-rule mt-16" />
-        </section>
-
-        {/* PROFILE SECTION */}
-        <section id="profile">
-          <SectionHeader title="— PROFILE —" />
-          <div className="flex flex-col md:flex-row gap-12 md:gap-16">
-            <Reveal delay={0.1}>
-              <div className="md:w-1/2">
-                <h3 className="font-heading text-3xl md:text-4xl text-primary leading-snug">
-                  "Building robust defenses requires understanding how to dismantle them. Precision, creativity, and discipline drive every operation."
-                </h3>
-              </div>
-            </Reveal>
-            
-            <div className="hidden md:block w-[1px] bg-foreground/20 relative">
-              <div className="absolute top-0 bottom-0 left-[2px] w-[1px] bg-secondary/30" />
-            </div>
-            
-            <Reveal delay={0.3}>
-              <div className="md:w-1/2 font-body text-lg leading-relaxed text-foreground/90">
-                <p className="mb-6">
-                  <span className="float-left text-6xl font-heading text-secondary leading-[0.8] mr-3 mt-1">N</span>
-                  adheer Waleed Jasim is a cybersecurity engineer and software developer based in Baghdad, Iraq. With deep expertise spanning offensive and defensive security, software engineering, and technical strategy, he has built and led complex systems from vulnerability research to large-scale network defense.
-                </p>
-                <p>
-                  He brings precision, creativity, and discipline to every project — from custom tooling to cutting-edge security operations. His approach seamlessly bridges the gap between deep technical exploitation and resilient enterprise architecture.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* EXPERTISE SECTION */}
-        <section id="expertise">
-          <SectionHeader title="— EXPERTISE —" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Offensive & Defensive Security",
-                items: ["Penetration Testing", "Vulnerability Research", "Malware Analysis", "CTF Competition", "Threat Mitigation", "Network Defense"]
-              },
-              {
-                title: "Software Engineering",
-                items: ["Full-Stack Development", "System Architecture", "API Design", "Database Engineering", "Workflow Automation"]
-              },
-              {
-                title: "Technical Strategy",
-                items: ["Security Assessment", "Technical Leadership", "Research & Development", "Tool Development", "Process Engineering"]
-              }
-            ].map((col, i) => (
-              <Reveal key={i} delay={i * 0.2}>
-                <motion.div 
-                  whileHover={{ y: -4, boxShadow: "0 12px 30px -10px rgba(107, 30, 42, 0.15)" }}
-                  className="vintage-border bg-background p-8 h-full transition-shadow duration-500"
-                >
-                  <h4 className="font-heading text-2xl text-primary mb-6 text-center border-b border-foreground/10 pb-4">
-                    {col.title}
-                  </h4>
-                  <ul className="space-y-4 font-body text-[15px]">
-                    {col.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-3">
-                        <span className="text-secondary text-sm mt-1">✦</span>
-                        <span className="leading-tight">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* WORKS SECTION */}
-        <section id="works">
-          <SectionHeader title="— WORKS —" />
-          <div className="flex flex-col gap-12">
-            {[
-              { id: "01", name: "Mirai", desc: "Advanced botnet reverse engineering and analysis project studying IoT exploit chains and network propagation mechanics." },
-              { id: "02", name: "Print Workflow Manager", desc: "Enterprise print management system streamlining production workflows for commercial printing operations." },
-              { id: "03", name: "Custom Security & Automation Tooling", desc: "Bespoke security tools and automation scripts built for real-world offensive and defensive operations." },
-              { id: "04", name: "Eco-Iraq", desc: "Environmental data platform for Iraq, aggregating ecological metrics and enabling data-driven environmental policy." },
-              { id: "05", name: "Advanced Vulnerability Research", desc: "Systematic research into novel attack vectors, CVE documentation, and responsible disclosure." },
-              { id: "06", name: "Network Defense & Threat Mitigation", desc: "Large-scale network hardening and threat response frameworks deployed in production environments." }
-            ].map((project, i) => (
-              <Reveal key={project.id} delay={0.1}>
-                <motion.div 
-                  whileHover={{ x: 8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group relative"
-                >
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-baseline">
-                    <span className="font-heading text-6xl md:text-8xl text-secondary/30 transition-colors group-hover:text-secondary/60">
-                      {project.id}
-                    </span>
-                    <div className="flex-1 pb-6 border-b border-foreground/20">
-                      <h4 className="font-heading text-3xl md:text-4xl text-foreground mb-4 group-hover:text-primary transition-colors">
-                        {project.name}
-                      </h4>
-                      <p className="font-body text-lg text-foreground/80 max-w-3xl leading-relaxed">
-                        {project.desc}
-                      </p>
+                
+                <div className="w-full md:w-[40%] mt-12 md:mt-0 md:pl-12">
+                  <Reveal delay={0.2} className="pl-6 border-l-[3px] border-primary space-y-6">
+                    <div>
+                      <div className="font-teko text-primary tracking-[0.2em] uppercase text-[15px] mb-1">LOCATION</div>
+                      <div className="font-cormorant text-foreground text-xl">Baghdad, Iraq</div>
                     </div>
-                  </div>
-                </motion.div>
+                    <div>
+                      <div className="font-teko text-primary tracking-[0.2em] uppercase text-[15px] mb-1">ROLE</div>
+                      <div className="font-cormorant text-foreground text-xl">Cybersecurity Engineer</div>
+                    </div>
+                    <div>
+                      <div className="font-teko text-primary tracking-[0.2em] uppercase text-[15px] mb-1">EMAIL</div>
+                      <div className="font-cormorant text-foreground text-xl">natheerwaleed1f@gmail.com</div>
+                    </div>
+                    <div>
+                      <div className="font-teko text-primary tracking-[0.2em] uppercase text-[15px] mb-1">PHONE</div>
+                      <div className="font-cormorant text-foreground text-xl">+9647700155986</div>
+                    </div>
+                  </Reveal>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* EXPERTISE SECTION */}
+          <section id="expertise" className="bg-alt pt-20 pb-32">
+            <div className="max-w-7xl mx-auto px-6">
+              <PosterRule />
+              <div className="text-center py-6">
+                <span className="font-bebas text-4xl text-secondary">— 02 —</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 mt-12 relative">
+                <Reveal className="md:pr-8 md:border-r-[2px] border-primary">
+                  <h3 className="font-bebas text-3xl md:text-[2rem] tracking-wide text-foreground mb-8">OFFENSIVE & DEFENSIVE</h3>
+                  <ul className="space-y-3 font-cormorant text-xl text-foreground">
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Penetration Testing</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Vulnerability Research</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Malware Analysis</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> CTF Competition</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Threat Mitigation</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Network Defense</li>
+                  </ul>
+                </Reveal>
+                
+                <Reveal delay={0.2} className="md:px-8 md:border-r-[2px] border-primary">
+                  <h3 className="font-bebas text-3xl md:text-[2rem] tracking-wide text-foreground mb-8">SOFTWARE ENGINEERING</h3>
+                  <ul className="space-y-3 font-cormorant text-xl text-foreground">
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Full-Stack Development</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> System Architecture</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> API Design</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Database Engineering</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Workflow Automation</li>
+                  </ul>
+                </Reveal>
+                
+                <Reveal delay={0.4} className="md:pl-8">
+                  <h3 className="font-bebas text-3xl md:text-[2rem] tracking-wide text-foreground mb-8">STRATEGY</h3>
+                  <ul className="space-y-3 font-cormorant text-xl text-foreground">
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Security Assessment</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Technical Leadership</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Research & Development</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Tool Development</li>
+                    <li><span className="text-primary mr-3 text-sm">✦</span> Process Engineering</li>
+                  </ul>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+
+          {/* WORKS SECTION */}
+          <section id="works" className="bg-background pt-20 pb-32">
+            <div className="max-w-7xl mx-auto px-6">
+              <PosterRule />
+              <div className="text-center py-6">
+                <span className="font-bebas text-4xl text-secondary">— 03 —</span>
+              </div>
+              
+              <div className="mt-12 flex flex-col">
+                {[
+                  { id: "01", name: "MIRAI", desc: "Advanced botnet reverse engineering and analysis project studying IoT exploit chains and network propagation mechanics" },
+                  { id: "02", name: "PRINT WORKFLOW MANAGER", desc: "Enterprise print management system streamlining production workflows for commercial printing operations" },
+                  { id: "03", name: "SECURITY & AUTOMATION TOOLING", desc: "Bespoke security tools and automation scripts built for real-world offensive and defensive operations" },
+                  { id: "04", name: "ECO-IRAQ", desc: "Environmental data platform for Iraq, aggregating ecological metrics and enabling data-driven environmental policy" },
+                  { id: "05", name: "ADVANCED VULNERABILITY RESEARCH", desc: "Systematic research into novel attack vectors, CVE documentation, and responsible disclosure" },
+                  { id: "06", name: "NETWORK DEFENSE SIMULATION", desc: "Large-scale network hardening and threat response frameworks deployed in production environments" }
+                ].map((project) => (
+                  <React.Fragment key={project.id}>
+                    <Reveal delay={0.1}>
+                      <div className="relative py-12 pl-6 md:pl-12 border-l-[4px] border-border hover:border-highlight transition-colors duration-300 group cursor-none">
+                        <span className="absolute top-0 right-4 font-bebas text-[10rem] md:text-[12rem] leading-none opacity-5 text-foreground pointer-events-none select-none -z-10">
+                          {project.id}
+                        </span>
+                        <h4 className="font-bebas text-4xl md:text-[3.5rem] text-foreground mb-4 relative z-10">
+                          {project.name}
+                        </h4>
+                        <p className="font-cormorant text-lg md:text-[1rem] text-secondary max-w-3xl relative z-10">
+                          {project.desc}
+                        </p>
+                      </div>
+                    </Reveal>
+                    <ThinRule />
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CREDENTIALS SECTION */}
+          <section id="credentials" className="bg-alt pt-20 pb-32">
+            <div className="max-w-5xl mx-auto px-6">
+              <PosterRule />
+              <div className="text-center py-6 mb-12">
+                <span className="font-bebas text-4xl text-secondary">— 04 —</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <Reveal className="border-[4px] border-primary bg-[#1A1A12] p-8 col-span-1 md:col-span-2">
+                  <h4 className="font-bebas text-5xl md:text-6xl text-foreground mb-2">6TH / 71 TEAMS</h4>
+                  <div className="font-teko text-primary tracking-[0.2em] text-xl">CTF COMPETITION</div>
+                </Reveal>
+                
+                <Reveal delay={0.1} className="border-[4px] border-primary bg-[#1A1A12] p-8">
+                  <h4 className="font-bebas text-4xl md:text-5xl text-foreground mb-2">78TH / 1,014 TEAMS</h4>
+                  <div className="font-teko text-primary tracking-[0.2em] text-xl">INTERNATIONAL CTF</div>
+                </Reveal>
+                
+                <Reveal delay={0.2} className="border-[4px] border-primary bg-[#1A1A12] p-8">
+                  <h4 className="font-bebas text-4xl md:text-5xl text-foreground mb-2">8TH PLACE — MINISTRY CTF</h4>
+                  <div className="font-teko text-primary tracking-[0.2em] text-xl">MINISTRY OF INTERIOR COMPETITION</div>
+                </Reveal>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+                {['AWS CERTIFIED', 'CISCO CERTIFIED', 'CEH — CERTIFIED ETHICAL HACKER'].map((cert, i) => (
+                  <Reveal key={i} delay={0.3 + (i * 0.1)} className="border-[2px] border-primary bg-background p-6 text-center">
+                    <h5 className="font-bebas text-2xl text-foreground">{cert}</h5>
+                  </Reveal>
+                ))}
+              </div>
+              
+              <Reveal delay={0.6} className="border-[4px] border-primary bg-[#1A1A12] p-6 text-center">
+                <h4 className="font-bebas text-3xl md:text-4xl text-foreground tracking-wide">
+                  HOST — AI DEVFEST 2026, AL-FARABI UNIVERSITY
+                </h4>
               </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* CREDENTIALS SECTION */}
-        <section id="credentials">
-          <SectionHeader title="— CREDENTIALS —" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <Reveal delay={0.1}>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-48 h-48 rounded-full border-[2px] border-primary p-2 mb-8 relative flex items-center justify-center">
-                  <div className="absolute inset-[6px] border border-dashed border-primary rounded-full animate-[spin_60s_linear_infinite]" />
-                  <div className="font-heading text-xl uppercase tracking-widest text-primary">
-                    CTF Honors
-                  </div>
-                </div>
-                <div className="space-y-6 font-body text-lg">
-                  <div className="border-b border-foreground/10 pb-4">
-                    <div className="font-heading text-2xl mb-1 text-foreground">6th Place</div>
-                    <div className="text-muted italic">out of 71 Teams</div>
-                  </div>
-                  <div className="border-b border-foreground/10 pb-4">
-                    <div className="font-heading text-2xl mb-1 text-foreground">78th Place</div>
-                    <div className="text-muted italic">out of 1,014 Teams</div>
-                  </div>
-                  <div className="pb-4">
-                    <div className="font-heading text-2xl mb-1 text-foreground">8th Place</div>
-                    <div className="text-muted italic">Ministry CTF</div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-48 h-48 rounded-full border-[2px] border-secondary p-2 mb-8 relative flex items-center justify-center">
-                  <div className="absolute inset-[6px] border border-dashed border-secondary rounded-full animate-[spin_60s_linear_infinite_reverse]" />
-                  <div className="font-heading text-xl uppercase tracking-widest text-secondary">
-                    Certifications
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-center gap-6 mt-8">
-                  {['AWS', 'Cisco', 'CEH'].map(cert => (
-                    <motion.div 
-                      key={cert}
-                      whileHover={{ y: -4, scale: 1.05 }}
-                      className="vintage-border px-8 py-4 bg-background"
-                    >
-                      <span className="font-heading text-2xl text-foreground tracking-widest">{cert}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-      </main>
-
-      {/* FOOTER */}
-      <footer className="mt-24 border-t-2 border-foreground/20 border-double">
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-          <Reveal>
-            <h2 className="font-heading text-3xl tracking-[0.2em] text-primary mb-6">
-              NADHEER WALEED JASIM
-            </h2>
-            <div className="flex items-center justify-center gap-4 text-secondary mb-8">
-              <span className="w-12 h-[1px] bg-secondary" />
-              <span className="text-xl">✦</span>
-              <span className="w-12 h-[1px] bg-secondary" />
             </div>
-            <div className="font-subheading text-lg italic text-foreground/70 space-y-2">
-              <p>Baghdad, Iraq — 2025</p>
-              <p>natheerwaleed1f@gmail.com | +964 770 015 5986</p>
+          </section>
+
+        </main>
+
+        <footer className="bg-background border-t border-border pt-16 pb-24">
+          <div className="max-w-7xl mx-auto px-6 text-center flex flex-col items-center gap-6">
+            <OrnamentalDivider />
+            <div className="font-teko uppercase tracking-[0.3em] text-foreground text-lg md:text-xl mt-4">
+              NADHEER WALEED JASIM — BAGHDAD — 2026
             </div>
-          </Reveal>
-        </div>
-      </footer>
-    </div>
+            <div className="font-teko uppercase tracking-[0.2em] text-primary text-sm md:text-base">
+              natheerwaleed1f@gmail.com | +9647700155986
+            </div>
+          </div>
+        </footer>
+      </div>
+    </AnimatePresence>
   );
 };
 

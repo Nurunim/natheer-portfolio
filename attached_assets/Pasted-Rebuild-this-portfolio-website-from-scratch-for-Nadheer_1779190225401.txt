@@ -1,0 +1,139 @@
+Rebuild this portfolio website from scratch for Nadheer Waleed Jasim, a Cybersecurity Engineer from Baghdad.
+
+AESTHETIC DIRECTION — "Retro European Poster Art, 1970s–80s":
+Reference: vintage Swiss/Polish concert posters, Soviet constructivism meets Western editorial.
+Think: bold geometric blocks, dramatic asymmetric layouts, strong typographic hierarchy, ink textures, 
+NO gradients, NO glow effects, NO glassmorphism, NO modern UI patterns whatsoever.
+
+═══════════════════════════════
+COLOR PALETTE — STRICT
+═══════════════════════════════
+- Background: #0F0E0A (near-black, aged ink)
+- Primary text: #E8DFC0 (warm sand/ivory)
+- Accent 1: #8B9E6B (muted olive green)
+- Accent 2: #C4A882 (aged sand/tan)
+- Highlight: #D4B896 (warm parchment)
+- Borders/rules: #3A3A2E (dark olive-black)
+- NO white, NO pure black, NO neon, NO bright colors
+
+═══════════════════════════════
+TYPOGRAPHY — STRICT
+═══════════════════════════════
+Import from Google Fonts:
+- "Bebas Neue" — for the main name, section labels (all caps, condensed, poster-style)
+- "Cormorant Garamond" — for body text, descriptions (elegant serif)
+- "Teko" — for metadata, dates, tags (condensed sans, utilitarian)
+- "IM Fell English" — for pull quotes and accent phrases (old ink feel)
+
+NEVER use: Inter, Roboto, Arial, Montserrat, or any modern sans-serif.
+
+═══════════════════════════════
+LAYOUT PHILOSOPHY
+═══════════════════════════════
+- Heavy use of thick geometric border rules (3–6px lines in olive green)
+- Asymmetric grid: sections break the grid intentionally
+- Large negative space used dramatically, not accidentally
+- Text blocks at unexpected angles occasionally (section labels rotated 90deg on left edge)
+- Thin horizontal ruled lines between every major element
+- Poster-style: content density varies — some sections packed, some breathingly sparse
+
+═══════════════════════════════
+TEXTURE & ATMOSPHERE
+═══════════════════════════════
+- Full-page SVG noise/grain overlay (opacity 0.06–0.08) using feTurbulence for aged paper feel
+- Subtle halftone dot pattern in background (CSS radial-gradient dots, very faint)
+- Section dividers: ornamental lines built from "─── ✦ ───" styled in CSS
+- NO box shadows. Use thick border rules instead for depth.
+
+═══════════════════════════════
+HERO SECTION LAYOUT (most important)
+═══════════════════════════════
+- Full viewport height
+- TOP CENTER: His photo, large (400x500px tall rectangle — NOT a circle)
+  → Styled with: CSS filter sepia(20%) contrast(1.1), olive green thick border frame (4px), 
+  → Add a subtle halftone overlay on the photo using CSS mix-blend-mode: multiply
+  → Below photo, a thin sand-colored ruled line
+- Below the line: "NADHEER WALEED JASIM" in massive Bebas Neue, 
+  letter-spacing: 0.3em, full width, centered, sand color (#E8DFC0)
+- Below name: a thick 3px olive line full-width
+- Below that: "CYBERSECURITY ENGINEER  ✦  BAGHDAD, IRAQ" in Teko, spaced out
+- Below that: contact info in small Cormorant Garamond italic
+- Left edge: rotated 90° text label "PORTFOLIO — 2026" in Teko, olive green
+- Right edge: rotated 90° text label "BAGHDAD · IRAQ" in Teko, olive green
+- Top-left corner: geometric bracket decoration made of CSS borders
+
+═══════════════════════════════
+NAVIGATION
+═══════════════════════════════
+- Sticky top bar, background: #0F0E0A, border-bottom: 2px solid #8B9E6B
+- Left: "N.W.J" in Bebas Neue, large, sand color
+- Right: anchor links in Teko, uppercase, wide letter-spacing, olive green color
+- Links: PROFILE · EXPERTISE · WORKS · CREDENTIALS
+- On scroll: nav gets a very subtle backdrop-filter blur
+
+═══════════════════════════════
+FRAMER MOTION ANIMATIONS
+═══════════════════════════════
+- Hero: photo fades in first (0.8s), then name slams in with a slight Y drop (like a stamp), 
+  then subtitle and contact fade up with stagger 0.2s each
+- Section reveals: whileInView, each block slides up 40px and fades in, staggered children
+- Nav links: underline draws left-to-right on hover using CSS clip-path animation
+- Section labels (rotated): slide in from outside the viewport edge
+- Project rows: on hover, left border changes from olive to sand color (transition 0.3s)
+- NO bouncing, NO spring physics, NO playful easing — use easeOut only, keep it dignified
+
+═══════════════════════════════
+SECTIONS
+═══════════════════════════════
+
+1. PROFILE (#profile):
+- Two-column layout: 60% / 40%
+- Left: large rotated section label "PROFILE" + his full bio paragraph in Cormorant Garamond
+- Right: a stacked list of quick facts (Location, Role, Email, Phone) in bordered rows
+- Top: thick ruled line with "— 01 —" label in Bebas Neue
+
+2. EXPERTISE (#expertise):
+- Three vertical columns separated by 2px olive rules
+- Column headers in Bebas Neue (all caps): OFFENSIVE & DEFENSIVE / SOFTWARE ENGINEERING / STRATEGY
+- Items listed in Cormorant Garamond with ✦ bullet
+- Background: slightly lighter block (#161610) to contrast the section
+
+3. WORKS (#works):
+- Numbered list layout: each project gets a large background number (01, 02...) 
+  in Bebas Neue, enormous size (12rem), very faint (opacity 0.06), positioned behind
+- Project name in Bebas Neue large, description in Cormorant Garamond
+- Full-width ruled dividers between each project
+- Projects: Mirai / Print Workflow Manager / Security & Automation Tooling / Eco-Iraq / 
+  Advanced Vulnerability Research / Network Defense Simulation
+
+4. CREDENTIALS (#credentials):
+- Grid of rectangular "stamp" badges — NOT circles
+- Each badge: thick olive border, Bebas Neue title, Teko details, sand background tint
+- Highlight the CTF wins prominently: 
+  "6TH / 71 TEAMS" and "8TH PLACE — MINISTRY CTF" get larger badges
+- At the bottom: "HOST — AI DEVFEST 2026, AL-FARABI UNIVERSITY" in a wide full-span badge
+
+5. FOOTER:
+- Centered, minimal
+- "NADHEER WALEED JASIM — BAGHDAD — 2026"
+- Thin top border in olive
+- All in Teko, uppercase, wide spacing
+
+═══════════════════════════════
+TECH STACK
+═══════════════════════════════
+- React + Vite
+- Framer Motion (npm install framer-motion)
+- Tailwind CSS for layout only — all visual styling in regular CSS / inline styles
+- NO component libraries (no shadcn, no MUI, no Chakra)
+- Fully responsive — on mobile, columns stack, rotated labels hide, photo scales down
+
+═══════════════════════════════
+IMPORTANT RULES
+═══════════════════════════════
+- The photo placeholder should be a tall rectangle (not a circle) labeled with 
+  styled text "[ PHOTO ]" in Bebas Neue — he will replace the src himself
+- Zero cyber/hacker aesthetics — no terminals, no code rain, no glitch, no scanlines
+- Zero modern UI — no cards with border-radius > 2px, no floating shadows, no glassmorphism
+- Every section must feel like a different panel of the same vintage poster
+- The whole site should feel like it was printed, not coded

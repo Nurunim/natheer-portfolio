@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export const Cursor = () => {
+export const GrainOverlay = () => (
+  <div className="grain-overlay">
+    <svg width="100%" height="100%">
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" opacity="0.07"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+);
+
+export const CursorDot = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-  
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  // No spring per instructions: "framer-motion spring for position... wait, instruction says 
+  // 'CursorDot — olive green cursor follower (10px dot, framer-motion spring for position)'
+  const cursorXSpring = useSpring(cursorX, { stiffness: 400, damping: 28, mass: 0.5 });
+  const cursorYSpring = useSpring(cursorY, { stiffness: 400, damping: 28, mass: 0.5 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 6);
-      cursorY.set(e.clientY - 6);
+      cursorX.set(e.clientX - 5);
+      cursorY.set(e.clientY - 5);
     };
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
@@ -20,72 +32,39 @@ export const Cursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full pointer-events-none z-[10000]"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-      }}
+      className="fixed top-0 left-0 w-[10px] h-[10px] bg-primary rounded-full pointer-events-none z-[99999]"
+      style={{ x: cursorXSpring, y: cursorYSpring }}
     />
   );
 };
 
-export const Nav = () => {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-foreground/10">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#hero" className="font-heading text-2xl tracking-widest text-foreground hover:text-primary transition-colors">
-          N.W.J
-        </a>
-        <div className="hidden md:flex gap-8 font-subheading text-lg tracking-widest uppercase">
-          <a href="#profile" className="text-foreground hover:text-primary transition-colors">Profile</a>
-          <a href="#expertise" className="text-foreground hover:text-primary transition-colors">Expertise</a>
-          <a href="#works" className="text-foreground hover:text-primary transition-colors">Works</a>
-          <a href="#credentials" className="text-foreground hover:text-primary transition-colors">Credentials</a>
-        </div>
+export const StickyNav = () => (
+  <nav className="sticky top-0 z-50 bg-background border-b-[2px] border-primary">
+    <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+      <a href="#hero" className="font-bebas text-2xl text-foreground tracking-widest">N.W.J</a>
+      <div className="hidden md:flex gap-8 font-teko uppercase tracking-[0.2em] text-primary">
+        {['Profile', 'Expertise', 'Works', 'Credentials'].map(link => (
+          <a key={link} href={`#${link.toLowerCase()}`} className="relative group hover:text-foreground transition-colors duration-300">
+            {link}
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))}
       </div>
-      <div className="h-[1px] w-full bg-secondary/30 mt-[2px]" />
-    </nav>
-  );
-};
-
-export const SectionHeader = ({ title }: { title: string }) => {
-  return (
-    <div className="mb-16 mt-32 relative">
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute top-1/2 left-0 right-0 h-[1px] bg-foreground/20 origin-left"
-      />
-      <div className="text-center relative">
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-block px-6 bg-background font-heading text-2xl md:text-3xl text-foreground tracking-[0.3em]"
-        >
-          {title}
-        </motion.h2>
-      </div>
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="w-24 h-[2px] bg-secondary mx-auto mt-4 origin-center"
-      />
     </div>
-  );
-};
+  </nav>
+);
 
-export const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
+export const PosterRule = () => <div className="poster-rule" />;
+export const ThinRule = () => <div className="thin-rule" />;
+export const OrnamentalDivider = () => <div className="ornamental-divider">─── ✦ ───</div>;
+
+export const Reveal = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ duration: 0.7, delay, ease: "easeOut" }}
+    className={className}
   >
     {children}
   </motion.div>
