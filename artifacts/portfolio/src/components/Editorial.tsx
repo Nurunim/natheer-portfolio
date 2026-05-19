@@ -3,9 +3,9 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export const GrainOverlay = () => (
   <div className="grain-overlay">
-    <svg width="100%" height="100%">
+    <svg width="100%" height="100%" style={{ opacity: 0.025 }}>
       <filter id="noiseFilter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" opacity="0.07"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/>
       </filter>
       <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
     </svg>
