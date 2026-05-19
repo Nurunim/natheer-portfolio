@@ -16,19 +16,22 @@ const resources = {
 
 i18n
   .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'en',
-    debug: false,
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+  .use(initReactI18next);
 
 i18n.on('languageChanged', (lng) => {
-  document.documentElement.lang = lng;
-  document.documentElement.dir = i18n.dir(lng);
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng;
+    document.documentElement.dir = i18n.dir(lng);
+  }
+});
+
+i18n.init({
+  resources,
+  fallbackLng: 'en',
+  debug: false,
+  interpolation: {
+    escapeValue: false,
+  },
 });
 
 export default i18n;
