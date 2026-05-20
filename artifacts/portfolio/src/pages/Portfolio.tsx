@@ -67,8 +67,8 @@ const Hero = () => {
       {/* NAME — over body, clear of subtitle */}
       <div className={`absolute z-20 w-full text-center ${isRtl ? 'top-[42%] md:top-[45%]' : 'top-[52%]'}`} style={{ left: 0, right: 0 }}>
         <div
-          className={`font-bebas select-none w-full px-4 ${isRtl ? 'leading-[1.1] tracking-normal' : 'leading-[0.88] tracking-[0.1em]'}`}
-          style={{ fontSize: "clamp(3rem, 10vw, 9rem)" }}
+          className={`select-none w-full px-4 ${isRtl ? 'leading-[1.1]' : 'font-bebas leading-[0.88] tracking-[0.1em]'}`}
+          style={{ fontSize: "clamp(3rem, 10vw, 9rem)", ...(isRtl ? { fontFamily: "'Noto Kufi Arabic', sans-serif", letterSpacing: "0", fontWeight: 700 } : {}) }}
           aria-label="Nadheer Waleed Jasim"
         >
           {/* NADHEER — slides in from left (or right for Arabic) */}

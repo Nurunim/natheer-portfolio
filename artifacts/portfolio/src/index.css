@@ -40,7 +40,18 @@ html[lang^="ar"],
 html[lang^="ar"] body, 
 html[lang^="ar"] * {
   font-family: 'Noto Kufi Arabic', sans-serif !important;
-  letter-spacing: normal !important;
+  letter-spacing: 0 !important;
+}
+
+html[lang^="ar"] .tracking-widest,
+html[lang^="ar"] .tracking-wide,
+html[lang^="ar"] [class*="tracking-"] {
+  letter-spacing: 0 !important;
+}
+
+html[lang^="ar"] .section-label-rotated {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 @layer base {
